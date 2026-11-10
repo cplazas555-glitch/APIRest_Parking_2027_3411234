@@ -24,13 +24,19 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class RegistroParqueo {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id_registro;
 	
+	@ManyToOne(optional =false)
+    @JoinColumn(name= "vehiculo_id, nullable=false")
+	private Vehiculo vehiculo;
+	
     @ManyToOne(optional =false)
     @JoinColumn(name= "espacio_id, nullable=false")
 	private EspacioParqueo espacio;
+    
     @Column(nullable=false)
 	private LocalDateTime fechaEntrada;
 	private LocalDateTime fechaSalida;
